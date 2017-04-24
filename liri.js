@@ -21,7 +21,7 @@ switch(process.argv[2]){
 				type: 'track',
 				id: '0hrBpAOgrt8RXigk83LLNE'
 			};
-			spotModule.lookup(spotParams, spotCallBack); 
+			spotModule.lookup(spotParams, spotLookUp); 
 		} else{
 			var spotParams = {
 				type: 'track',
@@ -47,14 +47,13 @@ function tCallBack(err, twts, res) {
 function spotCallBack(err, data) {
 	//console.log(err);
 	//console.log(data);
-	if(data.Contains(tracks)) {
-		console.log("Artist: " + data.tracks.items[0].artists[0].name + "\r\nSong title: " + data.tracks.items[0].name + " \r\nAlbum: " + data.tracks.items[0].album.name + "\r\nSong link: " + data.tracks.items[0].preview_url);	
-	} else{
-		console.log("Artist: " + data.tracks.artists[0].name + "\r\nSong title: " + data.tracks.name + " \r\nAlbum: " + data.tracks.album.name + "\r\nSong link: " + data.tracks.preview_url);	
-	}
+	console.log("Artist: " + data.tracks.items[0].artists[0].name + "\r\nSong title: " + data.tracks.items[0].name + " \r\nAlbum: " + data.tracks.items[0].album.name + "\r\nSong link: " + data.tracks.items[0].preview_url);		
 }
 
-
+function spotLookUp(err, data) {
+	// console.log(data);
+	console.log("Artist: " + data.artists[0].name + "\r\nSong title: " + data.name + " \r\nAlbum: " + data.album.name + "\r\nSong link: " + data.preview_url);	
+}
 
 function twtTxt(eachTweet) {
 		console.log("Tweet:" + " " + eachTweet.text + " Created at:" + " " + eachTweet.created_at.substring(0, 19));
